@@ -13,9 +13,9 @@ export default function V2ComingSoon() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col selection:bg-orange-500 selection:text-white">
-      {/* Header - Fixed to top */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md px-8 py-3 flex justify-between items-center max-w-7xl mx-auto w-full border-b border-gray-100">
+    <div className="bg-white text-gray-900 selection:bg-orange-500 selection:text-white">
+      {/* Header */}
+      <header className="px-8 py-4 flex justify-between items-center max-w-7xl mx-auto w-full border-b border-gray-100">
         <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
           <img 
             src="https://res.cloudinary.com/db6qh4jsv/image/upload/v1783431291/favicon_uj392q.png" 
@@ -29,8 +29,8 @@ export default function V2ComingSoon() {
         </div>
       </header>
 
-      {/* Main Content - pt-24 pushes it right below the fixed header cleanly */}
-      <main className="flex-1 max-w-3xl mx-auto px-6 pt-28 pb-12 text-center flex flex-col items-center justify-center">
+      {/* Main Content - Tightened padding-top */}
+      <main className="max-w-3xl mx-auto px-6 pt-12 pb-20 text-center flex flex-col items-center">
         {/* Top Badge */}
         <div className="inline-block px-4 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-700 text-xs font-semibold tracking-wide uppercase mb-6">
           Modern Solution for Spiritual Professionals
@@ -75,7 +75,7 @@ export default function V2ComingSoon() {
       </main>
 
       {/* Simple Footer */}
-      <footer className="px-8 py-4 text-center text-xs text-gray-400 border-t border-gray-100">
+      <footer className="px-8 py-6 text-center text-xs text-gray-400 border-t border-gray-100 max-w-7xl mx-auto w-full">
         <p>© {new Date().getFullYear()} RitualPlanner. All rights reserved.</p>
       </footer>
     </div>
