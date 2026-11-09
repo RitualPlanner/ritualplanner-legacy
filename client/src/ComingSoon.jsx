@@ -13,51 +13,64 @@ export default function V2ComingSoon() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 flex flex-col justify-between p-6 md:p-12">
-      {/* Simple Header */}
-      <header className="max-w-2xl mx-auto w-full flex justify-between items-center">
-        <span className="font-semibold text-lg tracking-tight">RitualPlanner</span>
-        <span className="text-xs text-gray-500">v2.0 Coming Soon</span>
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between p-6 md:p-12 relative overflow-hidden select-none">
+      
+      {/* Soft Ambient Background Glow */}
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-violet-500/10 blur-[120px] pointer-events-none" />
+
+      {/* Header */}
+      <header className="max-w-4xl mx-auto w-full flex justify-between items-center z-10">
+        <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+          RitualPlanner
+        </span>
+        <span className="text-xs px-2.5 py-1 font-medium bg-slate-900 border border-slate-800 text-slate-400 rounded-full tracking-wider shadow-sm">
+          v2.0 Coming Soon
+        </span>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-md mx-auto w-full text-center my-auto space-y-6">
-        <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight text-white">
-            Version 2 is on the way.
+      {/* Main Container - Adjusted for true vertical flex-centering */}
+      <main className="max-w-lg mx-auto w-full text-center flex flex-col justify-center items-center flex-grow py-12 z-10">
+        <div className="space-y-4 mb-8">
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
+            Version 2 is <br className="sm:hidden" /> on the way.
           </h1>
-          <p className="text-sm text-gray-400">
-            We are working on something new. Drop your email below to get notified when we launch.
+          <p className="text-base text-slate-400 max-w-sm mx-auto leading-relaxed">
+            We are polishing up something beautiful. Drop your email below to secure early access.
           </p>
         </div>
 
-        {submitted ? (
-          <div className="p-3 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-300">
-            Thanks! We'll notify you when it's ready.
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-3">
-            <input
-              type="email"
-              required
-              placeholder="Enter your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2.5 bg-gray-900 border border-gray-800 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gray-600"
-            />
-            <button
-              type="submit"
-              className="w-full py-2.5 bg-white text-gray-950 font-medium text-sm rounded-lg hover:bg-gray-200 transition-colors"
-            >
-              Notify Me
-            </button>
-          </form>
-        )}
+        <div className="w-full max-w-md">
+          {submitted ? (
+            <div className="p-4 bg-slate-900/60 backdrop-blur-md border border-emerald-500/30 rounded-xl text-sm text-emerald-400 font-medium transition-all shadow-lg shadow-emerald-950/20">
+              ✨ Thanks! We'll notify you the exact moment we launch.
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-3.5">
+              <div className="relative group">
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-3 bg-slate-900/80 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all duration-200"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full py-3 bg-white text-slate-950 font-semibold text-sm rounded-xl hover:bg-slate-200 active:scale-[0.99] transition-all duration-200 shadow-md shadow-white/5"
+              >
+                Notify Me
+              </button>
+            </form>
+          )}
+        </div>
       </main>
 
-      {/* Simple Footer */}
-      <footer className="max-w-2xl mx-auto w-full text-center text-xs text-gray-600">
-        © {new Date().getFullYear()} RitualPlanner
+      {/* Footer */}
+      <footer className="max-w-4xl mx-auto w-full text-center text-xs text-slate-600 tracking-wide z-10">
+        © {new Date().getFullYear()} RitualPlanner · All rights reserved.
       </footer>
     </div>
   );
