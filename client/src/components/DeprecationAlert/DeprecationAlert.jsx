@@ -1,96 +1,90 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 const DeprecationAlert = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  
-  // Handle "Go Back" button click
-  const handleGoBack = () => {
-    window.history.back();
-  };
+  const [countdown, setCountdown] = useState(5);
 
-  // This effect prevents users from bypassing the alert using browser developer tools
   useEffect(() => {
-    // Function to check if the alert is still visible
-    const checkVisibility = () => {
-      const alertElement = document.getElementById('deprecation-alert');
-      
-      // If the alert is not visible but should be, force reload the page
-      if (alertElement && (
-        window.getComputedStyle(alertElement).display === 'none' ||
-        window.getComputedStyle(alertElement).visibility === 'hidden' ||
-        alertElement.style.display === 'none' ||
-        alertElement.style.visibility === 'hidden'
-      )) {
-        window.location.reload();
-      }
-    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
 
-    // Check visibility every 500ms
-    const intervalId = setInterval(checkVisibility, 500);
-    
-    // Prevent right-click to access developer tools context menu
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-      return false;
-    };
-    
-    // Prevent keyboard shortcuts for developer tools
-    const handleKeyDown = (e) => {
-      // Prevent F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
-      if (
-        e.key === 'F12' || 
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c'))
-      ) {
-        e.preventDefault();
-        return false;
-      }
-    };
-    
-    // Add event listeners
-    document.addEventListener('contextmenu', handleContextMenu);
-    document.addEventListener('keydown', handleKeyDown);
-    
-    // Clean up on unmount
     return () => {
-      clearInterval(intervalId);
-      document.removeEventListener('contextmenu', handleContextMenu);
-      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
     };
   }, []);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setCountdown((current) => {
+        if (current <= 1) {
+          window.clearInterval(intervalId);
+          window.location.replace('https://ritualplanner.vercel.app/v2');
+          return 1;
+        }
 
-  return (
-    <div id="deprecation-alert" className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-md">
-      <div className="bg-white rounded-lg shadow-xl w-11/12 max-w-lg overflow-hidden">
-        <div className="bg-red-600 p-4">
-          <h2 className="text-xl font-bold text-white flex items-center">
-            <span className="mr-2">⚠️</span> Version Deprecation Notice
+        return current - 1;
+      });
+    }, 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  return createPortal(
+    <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-zinc-950/75 p-3 backdrop-blur-sm sm:p-6">
+      <section
+        aria-describedby="deprecation-description"
+        aria-labelledby="deprecation-title"
+        aria-modal="true"
+        className="my-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-xl overflow-y-auto overscroll-contain rounded-lg border border-zinc-200 bg-white font-medium text-zinc-900 shadow-2xl sm:max-h-[calc(100dvh-3rem)]"
+        role="dialog"
+        style={{ fontFamily: 'Poppins, sans-serif' }}
+      >
+        <div className="border-b border-zinc-200 bg-white px-4 py-4 sm:px-7 sm:py-5">
+          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-red-600">End of life · V1.0.0</p>
+          <h2 id="deprecation-title" className="text-xl font-bold text-zinc-950 sm:text-2xl">
+            📢 Official Announcement: Version Deprecation ⚠️
           </h2>
-        </div>
-        <div className="p-6 space-y-4">
-          <p className="text-gray-700">
-            This version of RitualPlanner is deprecated and is not recommended for use by the official RitualPlanner team. 
-            It has security vulnerabilities and other issues that may cause the software to function inefficiently.
-          </p>
-          <p className="text-gray-700">
-            You may experience problems while using this version. If you choose to continue, 
-            please be aware that the RitualPlanner official team will not be responsible for any issues that occur.
-          </p>
-          <p className="font-semibold text-gray-800">
-            Version 2 is currently under development. Please stay tuned for updates.
+          <p className="mt-2 text-sm font-semibold text-red-600">
+            This release is deprecated, unsupported, and not safe for production use.
           </p>
         </div>
-        <div className="bg-gray-100 p-4 flex justify-center">
-          <button 
-            className="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors"
-            onClick={handleGoBack}
-          >
-            Go Back
-          </button>
+
+        <div className="space-y-5 px-4 py-4 text-sm leading-6 text-zinc-700 sm:px-7 sm:py-5">
+          <p id="deprecation-description">
+            RitualPlanner V1 reached end of support on October 29, 2025. It has known security vulnerabilities,
+            and no further security updates or fixes will be released.
+          </p>
+
+          <div className="border-l-4 border-red-500 bg-red-50 px-4 py-3 text-red-950">
+            <p className="font-semibold">Continued use is at your own risk.</p>
+            <p className="mt-1">
+              The deprecated release may expose you to security breaches, data loss, and reliability or performance
+              issues. Please stop using Version 1 immediately. Version 2.0.0 is currently under development.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3 border-t border-zinc-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-semibold text-zinc-950">RitualPlanner 2.0.0 is under development</p>
+              <p className="text-zinc-600">Visit the Version 2 site for updates.</p>
+            </div>
+            <a
+              className="inline-flex min-h-11 items-center justify-center rounded-lg bg-orange-500 px-5 py-2 font-semibold text-white transition-colors hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              href="https://ritualplanner.vercel.app/v2"
+            >
+              Visit Version 2
+            </a>
+          </div>
         </div>
-      </div>
-    </div>
+
+        <div className="border-t border-zinc-200 bg-zinc-50 px-4 py-4 text-center sm:px-7 sm:py-5" aria-live="polite">
+          <p className="text-sm font-semibold text-zinc-900">
+            Redirecting to Version 2 in <span className="text-orange-600">{countdown}</span> seconds...
+          </p>
+        </div>
+      </section>
+    </div>,
+    document.body,
   );
 };
 
