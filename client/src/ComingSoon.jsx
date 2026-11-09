@@ -13,9 +13,9 @@ export default function V2ComingSoon() {
   };
 
   return (
-    <div className="bg-white text-gray-900 selection:bg-orange-500 selection:text-white">
-      {/* Header */}
-      <header className="px-8 py-4 flex justify-between items-center max-w-7xl mx-auto w-full border-b border-gray-100">
+    <div className="min-h-screen bg-white text-gray-900 flex flex-col items-center selection:bg-orange-500 selection:text-white">
+      {/* Header - Minimal height and padding */}
+      <header className="px-8 py-2 flex justify-between items-center max-w-7xl mx-auto w-full border-b border-gray-100">
         <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
           <img 
             src="https://res.cloudinary.com/db6qh4jsv/image/upload/v1783431291/favicon_uj392q.png" 
@@ -29,21 +29,21 @@ export default function V2ComingSoon() {
         </div>
       </header>
 
-      {/* Main Content - Tightened padding-top */}
-      <main className="max-w-3xl mx-auto px-6 pt-12 pb-20 text-center flex flex-col items-center">
+      {/* Main Content - Tightened top padding (pt-4) */}
+      <main className="flex-1 max-w-3xl w-full px-6 pt-6 pb-12 text-center flex flex-col items-center justify-start">
         {/* Top Badge */}
-        <div className="inline-block px-4 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-700 text-xs font-semibold tracking-wide uppercase mb-6">
+        <div className="inline-block px-4 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-700 text-xs font-semibold tracking-wide uppercase mb-4">
           Modern Solution for Spiritual Professionals
         </div>
 
         {/* Hero Title */}
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight">
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4 leading-tight">
           The Next Evolution for <br />
           <span className="text-orange-600">Modern Pandits</span> & Temples
         </h1>
 
         {/* Subtitle */}
-        <p className="text-base md:text-lg text-gray-600 max-w-xl mb-8 leading-relaxed">
+        <p className="text-base md:text-lg text-gray-600 max-w-xl mb-6 leading-relaxed">
           We are rebuilding RitualPlanner from the ground up. Drop your email below to get notified when v2.0 goes live.
         </p>
 
@@ -74,8 +74,8 @@ export default function V2ComingSoon() {
         </div>
       </main>
 
-      {/* Simple Footer */}
-      <footer className="px-8 py-6 text-center text-xs text-gray-400 border-t border-gray-100 max-w-7xl mx-auto w-full">
+      {/* Footer */}
+      <footer className="px-8 py-4 text-center text-xs text-gray-400 border-t border-gray-100 max-w-7xl mx-auto w-full">
         <p>© {new Date().getFullYear()} RitualPlanner. All rights reserved.</p>
       </footer>
     </div>
