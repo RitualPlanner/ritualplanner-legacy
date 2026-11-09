@@ -1,9 +1,12 @@
 {
-  "redirects": [
+  "rewrites": [
+    {
+      "source": "/v1",
+      "destination": "/"
+    },
     {
       "source": "/v1/:path*",
-      "destination": "/:path*",
-      "permanent": false
+      "destination": "/:path*"
     }
   ]
 }
