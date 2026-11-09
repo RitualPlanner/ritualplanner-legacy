@@ -20,7 +20,7 @@ export default function V2ComingSoon() {
           <img 
             src="https://res.cloudinary.com/db6qh4jsv/image/upload/v1783431291/favicon_uj392q.png" 
             alt="RitualPlanner Logo" 
-            className="w-8 h-8 object-contain"
+            className="w-16 h-16 object-contain"
           />
           <span>RitualPlanner</span>
         </div>
