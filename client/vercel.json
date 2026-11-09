@@ -1,12 +1,20 @@
 {
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/v1",
-      "destination": "/"
+      "source": "/v(?!1$|2$)[0-9]+",
+      "destination": "/v2",
+      "permanent": false
     },
     {
-      "source": "/v1/:path*",
-      "destination": "/:path*"
+      "source": "/v(?!1|2)[0-9]+/:path*",
+      "destination": "/v2",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
