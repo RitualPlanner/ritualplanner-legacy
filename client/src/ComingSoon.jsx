@@ -13,7 +13,8 @@ export default function V2ComingSoon() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between p-6 md:p-12 relative overflow-hidden select-none">
+    /* fixed: absolute layout escape to bypass any restrictions from parent index wrappers */
+    <div className="fixed inset-0 w-screen h-screen bg-slate-950 text-slate-100 flex flex-col justify-between p-6 md:p-12 overflow-hidden select-none z-[9999]">
       
       {/* Soft Ambient Background Glow */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none" />
@@ -29,8 +30,8 @@ export default function V2ComingSoon() {
         </span>
       </header>
 
-      {/* Main Container - Adjusted for true vertical flex-centering */}
-      <main className="max-w-lg mx-auto w-full text-center flex flex-col justify-center items-center flex-grow py-12 z-10">
+      {/* Main Content Area */}
+      <main className="max-w-lg mx-auto w-full text-center flex flex-col justify-center items-center flex-grow py-6 z-10">
         <div className="space-y-4 mb-8">
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
             Version 2 is <br className="sm:hidden" /> on the way.
@@ -46,17 +47,16 @@ export default function V2ComingSoon() {
               ✨ Thanks! We'll notify you the exact moment we launch.
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-3.5">
-              <div className="relative group">
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-900/80 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all duration-200"
-                />
-              </div>
+            <form onSubmit={handleSubmit} className="space-y-3.5 w-full">
+              <input
+                type="email"
+                required
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                /* fixed: text alignment forced left to avoid inherited text-center bugs */
+                className="w-full px-4 py-3 bg-slate-900/80 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 text-left focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all duration-200"
+              />
               <button
                 type="submit"
                 className="w-full py-3 bg-white text-slate-950 font-semibold text-sm rounded-xl hover:bg-slate-200 active:scale-[0.99] transition-all duration-200 shadow-md shadow-white/5"
