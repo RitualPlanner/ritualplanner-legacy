@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   SparklesIcon, 
   CheckCircleIcon, 
@@ -13,6 +13,39 @@ export default function V2ComingSoon() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Ensure body and root don't inherit default Vite margins/paddings or white background
+  useEffect(() => {
+    const originalBodyBg = document.body.style.backgroundColor;
+    const originalBodyMargin = document.body.style.margin;
+    const originalBodyPadding = document.body.style.padding;
+
+    document.body.style.backgroundColor = '#0c0d12';
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+
+    const root = document.getElementById('root');
+    const originalRootPadding = root?.style.padding;
+    const originalRootMargin = root?.style.margin;
+    const originalRootMaxWidth = root?.style.maxWidth;
+
+    if (root) {
+      root.style.padding = '0';
+      root.style.margin = '0';
+      root.style.maxWidth = '100%';
+    }
+
+    return () => {
+      document.body.style.backgroundColor = originalBodyBg;
+      document.body.style.margin = originalBodyMargin;
+      document.body.style.padding = originalBodyPadding;
+      if (root) {
+        if (originalRootPadding !== undefined) root.style.padding = originalRootPadding;
+        if (originalRootMargin !== undefined) root.style.margin = originalRootMargin;
+        if (originalRootMaxWidth !== undefined) root.style.maxWidth = originalRootMaxWidth;
+      }
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,6 +77,19 @@ export default function V2ComingSoon() {
 
   return (
     <div className="min-h-screen bg-[#0c0d12] text-slate-100 flex flex-col justify-between selection:bg-orange-500 selection:text-white relative overflow-x-hidden font-sans">
+      {/* Fallback CSS Reset to eliminate any unwanted root/body border */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        html, body, #root {
+          margin: 0 !important;
+          padding: 0 !important;
+          background-color: #0c0d12 !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          overflow-x: hidden !important;
+          min-height: 100% !important;
+        }
+      ` }} />
+
       {/* Background Radial Glow matching RitualPlanner v2 Theme */}
       <div 
         className="pointer-events-none fixed inset-0 z-0 opacity-40"
@@ -63,7 +109,7 @@ export default function V2ComingSoon() {
 
       {/* Top Header */}
       <header className="relative z-10 w-full border-b border-white/[0.08] bg-[#0c0d12]/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-3.5 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex justify-between items-center">
           {/* Logo Brand */}
           <div className="flex items-center gap-3">
             <img 
@@ -77,7 +123,7 @@ export default function V2ComingSoon() {
           </div>
 
           {/* Version Indicator */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-400 text-xs font-semibold shadow-[0_0_15px_rgba(249,115,22,0.12)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-400 text-xs font-semibold shadow-[0_0_15px_rgba(249,115,22,0.12)]">
             <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
             <span>v2.0 Coming Soon</span>
           </div>
@@ -155,7 +201,7 @@ export default function V2ComingSoon() {
         </div>
 
         {/* Feature Teasers Preview Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full text-left">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full text-left">
           {previewHighlights.map((feat, idx) => {
             const Icon = feat.icon;
             return (
@@ -178,13 +224,12 @@ export default function V2ComingSoon() {
         </div>
       </main>
 
-      {/* Simple Footer */}
-      <footer className="relative z-10 w-full border-t border-white/[0.08] bg-[#0c0d12]/80 backdrop-blur-xl py-4">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} RitualPlanner. All rights reserved.</p>
-          <div className="flex items-center gap-4 text-xs text-slate-400">
-            <span className="text-orange-500/90 font-medium">Built for Hindu Dharma Practitioners</span>
-          </div>
+      {/* Centered Footer */}
+      <footer className="relative z-10 w-full border-t border-white/[0.08] bg-[#0c0d12]/80 backdrop-blur-xl py-6">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-center text-center">
+          <p className="text-xs text-slate-500">
+            © {new Date().getFullYear()} RitualPlanner. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
