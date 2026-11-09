@@ -131,16 +131,16 @@ export default function V2ComingSoon() {
       </header>
 
       {/* Hero Section */}
-      <main className="relative z-10 flex-1 max-w-5xl mx-auto px-5 sm:px-8 py-12 md:py-16 flex flex-col items-center justify-center text-center my-auto">
+      <main className="relative z-10 flex-1 max-w-5xl mx-auto px-5 sm:px-8 py-8 sm:py-12 flex flex-col items-center justify-center text-center my-auto">
         {/* Top Feature Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-300 text-xs font-semibold tracking-wide uppercase mb-7 shadow-[0_0_20px_rgba(249,115,22,0.1)]">
-          <SparklesIcon className="w-4 h-4 text-orange-400" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-300 text-xs font-medium tracking-wide mb-5 shadow-[0_0_20px_rgba(249,115,22,0.1)]">
+          <SparklesIcon className="w-3.5 h-3.5 text-orange-400" />
           <span>Modern Solution for Spiritual Professionals</span>
         </div>
 
         {/* Hero Title */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12] mb-6 max-w-4xl">
-          The Next Evolution for <br className="hidden sm:inline" />
+        <h1 className="text-2xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-white leading-snug sm:leading-tight mb-3.5 max-w-2xl">
+          The Next Evolution for{" "}
           <span className="bg-gradient-to-r from-orange-500 via-amber-400 to-orange-400 bg-clip-text text-transparent">
             Modern Pandits
           </span>{" "}
@@ -148,15 +148,15 @@ export default function V2ComingSoon() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base md:text-lg text-slate-400 max-w-2xl mb-10 leading-relaxed font-normal">
+        <p className="text-sm sm:text-base text-slate-400 max-w-xl mb-7 leading-relaxed font-normal">
           We are rebuilding RitualPlanner from the ground up with high-speed calendars, complete client directories, automated receipts, and seamless co-priest task coordination.
         </p>
 
         {/* Waitlist Subscription Card */}
-        <div className="w-full max-w-lg mb-12">
-          <div className="p-2 sm:p-2.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl shadow-2xl shadow-orange-950/20">
+        <div className="w-full max-w-md mb-8">
+          <div className="p-1.5 sm:p-2 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl shadow-xl shadow-orange-950/20">
             {submitted ? (
-              <div className="py-5 px-6 rounded-xl bg-orange-500/10 border border-orange-500/30 text-left flex items-start gap-3.5">
+              <div className="py-4 px-5 rounded-xl bg-orange-500/10 border border-orange-500/30 text-left flex items-start gap-3">
                 <div className="p-1.5 rounded-lg bg-orange-500/20 text-orange-400 shrink-0 mt-0.5">
                   <CheckCircleIcon className="w-5 h-5" />
                 </div>
@@ -175,12 +175,12 @@ export default function V2ComingSoon() {
                   placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 focus:bg-white/[0.06] transition-all"
+                  className="flex-1 px-4 py-2.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 focus:bg-white/[0.06] transition-all"
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-3 bg-gradient-to-r from-orange-500 via-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-sm rounded-xl transition-all shadow-lg shadow-orange-500/25 active:scale-95 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+                  className="px-5 py-2.5 bg-gradient-to-r from-orange-500 via-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-medium text-sm rounded-xl transition-all shadow-md shadow-orange-500/25 active:scale-95 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
                 >
                   {loading ? (
                     <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -194,28 +194,28 @@ export default function V2ComingSoon() {
               </form>
             )}
           </div>
-          <p className="text-[11px] text-slate-500 mt-2.5 flex items-center justify-center gap-1.5">
+          <p className="text-[11px] text-slate-500 mt-2 flex items-center justify-center gap-1.5">
             <ShieldCheckIcon className="w-3.5 h-3.5 text-orange-400/80" />
             <span>Zero spam. Only launch updates and exclusive priority access.</span>
           </p>
         </div>
 
         {/* Feature Teasers Preview Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full text-left">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full text-left">
           {previewHighlights.map((feat, idx) => {
             const Icon = feat.icon;
             return (
               <div 
                 key={idx}
-                className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-orange-500/30 hover:bg-white/[0.04] transition-all duration-300 group shadow-xs"
+                className="p-4 sm:p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-orange-500/30 hover:bg-white/[0.04] transition-all duration-300 group shadow-xs"
               >
-                <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center mb-3.5 group-hover:scale-105 transition-transform">
-                  <Icon className="w-5 h-5" />
+                <div className="w-9 h-9 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <Icon className="w-4.5 h-4.5" />
                 </div>
-                <h3 className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
+                <h3 className="text-sm font-semibold text-white group-hover:text-orange-400 transition-colors">
                   {feat.title}
                 </h3>
-                <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
                   {feat.desc}
                 </p>
               </div>
