@@ -1,12 +1,12 @@
 {
   "redirects": [
     {
-      "source": "/v(?!1$|2$)[0-9]+",
+      "source": "/v((?!1$|2$)[0-9]+)",
       "destination": "/v2",
       "permanent": false
     },
     {
-      "source": "/v(?!1|2)[0-9]+/:path*",
+      "source": "/v((?!1|2)[0-9]+)/:path*",
       "destination": "/v2",
       "permanent": false
     }
