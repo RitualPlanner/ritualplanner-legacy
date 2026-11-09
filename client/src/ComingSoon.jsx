@@ -13,8 +13,8 @@ export default function V2ComingSoon() {
   };
 
   return (
-    <div className="h-screen w-full bg-white text-gray-900 flex flex-col justify-between selection:bg-orange-500 selection:text-white overflow-hidden m-0 p-0">
-      {/* Header */}
+    <div className="fixed inset-0 bg-white text-gray-900 flex flex-col justify-between selection:bg-orange-500 selection:text-white overflow-hidden m-0 p-0">
+      {/* Header pinned directly to top */}
       <header className="px-8 py-3 flex justify-between items-center max-w-7xl mx-auto w-full border-b border-gray-100 shrink-0">
         <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
           <img 
